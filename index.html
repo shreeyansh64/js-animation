@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Js-Animation</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <title>Particle Animations</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    button {
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background: #444;
+      color: white;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #666;
+    }
+  </style>
 </head>
 <body>
-    <canvas id="canvas_1"></canvas>
-    <script src="./script.js"></script>
+
+  <h1>Select an Animation</h1>
+  <button onclick="window.location='line.html'">Line Animation</button>
+  <button onclick="window.location='draw.html'">Draw Animation</button>
+
 </body>
 </html>
