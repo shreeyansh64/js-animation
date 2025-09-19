@@ -10,14 +10,27 @@ ctx.fillStyle = gradient;
 ctx.strokeStyle = 'white';
 
 const mouse = {
-    x: 0,
-    y: 0,
+    x: undefined,
+    y: undefined,
     radius: 100
 };
-window.addEventListener('mousemove', e => {
+
+canvas.oncontextmenu = e => e.preventDefault();
+
+
+
+let mouseClick = null;
+
+window.addEventListener('mousedown', e => {
     mouse.x = e.x;
     mouse.y = e.y;
+    mouseClick = e.button === 0 ? 'push' : 'pull';
 });
+
+window.addEventListener('mouseup', () => {
+    mouseClick = null;
+});
+;
 
 
 
@@ -43,10 +56,21 @@ class Particle {
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const distance = Math.hypot(dx, dy);
-        if (distance < mouse.radius + this.radius) {
-            this.vx = -dx * 0.01;
-            this.vy = -dy * 0.01;
+
+        if (mouseClick && distance < mouse.radius + this.radius) {
+            const force = 0.5;
+            const directionX = dx / distance;
+            const directionY = dy / distance;
+
+            if (mouseClick === 'push') {
+                this.vx -= directionX * force;
+                this.vy -= directionY * force;
+            } else if (mouseClick === 'pull') {
+                this.vx += directionX * force;
+                this.vy += directionY * force;
+            }
         }
+
 
     }
 }
