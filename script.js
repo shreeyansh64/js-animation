@@ -2,20 +2,30 @@ const canvas = document.getElementById('canvas_1');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-ctx.fillStyle = 'green';
+
 
 
 class Particle {
     constructor(effect){
         this.effect = effect;
-        this.x = Math.random() * this.effect.width;
-        this.y = Math.random() * this.effect.height;
-        this.radius = 15;
+        this.radius = Math.random() * 20;
+        this.x = this.radius + Math.random() * (this.effect.width - this.radius *2);
+        this.y = this.radius + Math.random() * (this.effect.height - this.radius *2);
+        this.vx = Math.random() * 10 - 5;
+        this.vy = Math.random() * 10 - 5;
     }
     draw(context){
+        context.fillStyle = 'hsl('+ this.x * 0.5+',100%,50%)'
         context.beginPath();
         context.arc(this.x,this.y,this.radius,0,Math.PI * 2);
         context.fill();
+        context.stroke();
+    }
+    update(){
+        this.x += this.vx;
+        if(this.x > this.effect.width - this.radius || this.x < 0){this.vx *= -1}
+        this.y += this.vy;
+        if(this.y > this.effect.height - this.radius || this.y < 0){this.vy *= -1}
     }
 }
 
@@ -25,7 +35,7 @@ class Effect {
         this.width = this.canvas.width;
         this.height = this.canvas.height;
         this.particles = [];
-        this.numberOfParticles =20;
+        this.numberOfParticles =500;
         this.createParticles();
     }
     createParticles(){
@@ -34,14 +44,21 @@ class Effect {
         }
     }
     handle(context){
-        this.particles.forEach(e=>e.draw(context));
+        this.particles.forEach(e=>{
+            e.draw(context);
+            e.update();
+        });
     }
 }
 
 const eff = new Effect(canvas);
-eff.handle(ctx)
+
 
 
 function animation() {
-
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    eff.handle(ctx);
+    requestAnimationFrame(animation);
 }
+
+animation();
