@@ -56,7 +56,7 @@ class Effect {
         
     }
     connectParticle(context){
-        const maxdist = 50;
+        const maxdist = 100;
         for (let a = 0; a < this.particles.length; a++) {
             for (let b = 0; b < this.particles.length; b++) {
                 const dx = this.particles[a].x - this.particles[b].x;
