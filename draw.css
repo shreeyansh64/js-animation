@@ -4,9 +4,10 @@
     box-sizing: border-box;
 }
 
-#canvas_1 {
-    background: black;
+#canvas_2{
+    border: 10px solid black;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
