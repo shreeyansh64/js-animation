@@ -1,12 +1,14 @@
 const canvas = document.getElementById("canvas_2");
-canvas.width = 700;
-canvas.height = 600;
+canvas.width = 900;
+canvas.height = 700;
 const ctx = canvas.getContext('2d');
-const gradient = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
-gradient.addColorStop(0,'red');
-gradient.addColorStop(0.5,'pink');
-gradient.addColorStop(1,'yellow');
-ctx.strokeStyle = gradient;
+const gradient1 = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+const gradient2 = ctx.createRadialGradient(canvas.width*0.5,canvas.height*0.5,50,canvas.width*0.5,canvas.height*0.5,100)
+gradient2.addColorStop(0.4,'yellow');
+gradient2.addColorStop(0.6,'red');
+// gradient1.addColorStop(1,'yellow');
+ctx.strokeStyle = gradient2;
+
 
 class Line {
     constructor(canvas) {

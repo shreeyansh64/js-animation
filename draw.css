@@ -5,8 +5,7 @@
 }
 
 #canvas_2{
-    background: black;
-    border: 10px solid black;
+    /* border: 10px solid black; */
     position: absolute;
     top: 50%;
     left: 50%;
