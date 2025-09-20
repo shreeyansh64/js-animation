@@ -11,6 +11,10 @@ class Line {
         this.past = [{ x: this.x, y: this.y }];
         this.hue = Math.floor(Math.random() * 360);
         this.maxLength = 5;
+        this.speedx = 2;
+        this.speedy = 4;
+        this.lifeSpan = this.maxLength * 10;
+        this.timer = 0;
     }
     draw(context) {
         context.strokeStyle = 'hsl(' + this.hue + ',100%, 50%)';
@@ -25,17 +29,20 @@ class Line {
 
     }
     update() {
-        this.x = Math.random() * this.canvas.width;
-        this.y = Math.random() * this.canvas.height;
-        this.past.push({ x: this.x, y: this.y });
-        if (this.past.length > this.maxLength) {
-            this.past.shift()
+        this.timer++;
+        if (this.timer < this.lifeSpan) {
+            this.x += this.speedx + Math.random() * 50 - 25;
+            this.y += this.speedy + Math.random() * 50 - 25;
+            this.past.push({ x: this.x, y: this.y });
+            if (this.past.length > this.maxLength) {
+                this.past.shift()
+            }
         }
     }
 }
 
 let lineArr = [];
-const totalLines = 1;
+const totalLines = 20;
 
 for (let i = 0; i < totalLines; i++) {
     lineArr.push(new Line(canvas));
@@ -44,7 +51,7 @@ for (let i = 0; i < totalLines; i++) {
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    lineArr.map(e=>{
+    lineArr.map(e => {
         e.draw(ctx);
         e.update();
     });
