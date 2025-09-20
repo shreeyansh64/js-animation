@@ -2,12 +2,11 @@ const canvas = document.getElementById("canvas_2");
 canvas.width = 900;
 canvas.height = 700;
 const ctx = canvas.getContext('2d');
-const gradient1 = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
-const gradient2 = ctx.createRadialGradient(canvas.width*0.5,canvas.height*0.5,50,canvas.width*0.5,canvas.height*0.5,100)
-gradient2.addColorStop(0.4,'yellow');
-gradient2.addColorStop(0.6,'red');
-// gradient1.addColorStop(1,'yellow');
-ctx.strokeStyle = gradient2;
+const image = document.getElementById('bgimg');
+const pattern = ctx.createPattern(image,'no-repeat');
+
+
+ctx.strokeStyle = pattern;
 
 
 class Line {
