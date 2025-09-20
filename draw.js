@@ -2,6 +2,11 @@ const canvas = document.getElementById("canvas_2");
 canvas.width = 700;
 canvas.height = 600;
 const ctx = canvas.getContext('2d');
+const gradient = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+gradient.addColorStop(0,'red');
+gradient.addColorStop(0.5,'pink');
+gradient.addColorStop(1,'yellow');
+ctx.strokeStyle = gradient;
 
 class Line {
     constructor(canvas) {
@@ -17,7 +22,7 @@ class Line {
         this.timer = 0;
     }
     draw(context) {
-        context.strokeStyle = 'hsl(' + this.hue + ',100%, 50%)';
+        // context.strokeStyle = 'hsl(' + this.hue + ',100%, 50%)';
         context.lineWidth = Math.floor(Math.random() * 15 + 1);
         context.beginPath();
         context.moveTo(this.past[0].x, this.past[0].y);
@@ -52,7 +57,7 @@ class Line {
 }
 
 let lineArr = [];
-const totalLines = 70;
+const totalLines = 200;
 
 for (let i = 0; i < totalLines; i++) {
     lineArr.push(new Line(canvas));
