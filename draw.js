@@ -58,7 +58,7 @@ class Line {
 }
 
 let lineArr = [];
-const totalLines = 300;
+const totalLines = 100;
 
 for (let i = 0; i < totalLines; i++) {
     lineArr.push(new Line(canvas));
