@@ -11,9 +11,9 @@ class Line {
         this.past = [{ x: this.x, y: this.y }];
         this.hue = Math.floor(Math.random() * 360);
         this.maxLength = Math.floor(Math.random() * 150 + 6);
-        this.speedx = 2;
-        this.speedy = 4;
-        this.lifeSpan = this.maxLength * 10;
+        this.speedx = Math.random() * 1 - 0.5;
+        this.speedy = 5;
+        this.lifeSpan = this.maxLength * 2;
         this.timer = 0;
     }
     draw(context) {
@@ -31,8 +31,8 @@ class Line {
     update() {
         this.timer++;
         if (this.timer < this.lifeSpan) {
-            this.x += this.speedx + Math.random() * 50 - 25;
-            this.y += this.speedy + Math.random() * 50 - 25;
+            this.x += this.speedx + Math.random() * 20 - 10;
+            this.y += this.speedy + Math.random() * 20 - 10;
             this.past.push({ x: this.x, y: this.y });
             if (this.past.length > this.maxLength) {
                 this.past.shift()
@@ -52,7 +52,7 @@ class Line {
 }
 
 let lineArr = [];
-const totalLines = 20;
+const totalLines = 70;
 
 for (let i = 0; i < totalLines; i++) {
     lineArr.push(new Line(canvas));
