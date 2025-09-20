@@ -23,4 +23,10 @@ class Line {
     }
 }
 
+let lineArr = [];
+const totalLines = 50;
 
+for (let i = 0; i < totalLines; i++) {
+    lineArr.push(new Line(canvas));
+}
+lineArr.map(e=>{e.draw(ctx)});
