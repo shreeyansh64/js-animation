@@ -10,7 +10,7 @@ class Line {
         this.y = Math.random() * this.canvas.height;
         this.past = [{ x: this.x, y: this.y }];
         this.hue = Math.floor(Math.random() * 360);
-        this.maxLength = 5;
+        this.maxLength = Math.floor(Math.random() * 150 + 6);
         this.speedx = 2;
         this.speedy = 4;
         this.lifeSpan = this.maxLength * 10;
@@ -37,7 +37,17 @@ class Line {
             if (this.past.length > this.maxLength) {
                 this.past.shift()
             }
+        }else if (this.past.length <= 1){
+            this.reset();
+        }else{
+            this.past.shift()
         }
+    }
+    reset(){
+        this.x = Math.random() * this.canvas.width;
+        this.y = Math.random() * this.canvas.height;
+        this.past = [{ x: this.x, y: this.y }];
+        this.timer = 0;
     }
 }
 
