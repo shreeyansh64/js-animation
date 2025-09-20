@@ -40,8 +40,8 @@ class Particle {
         this.radius = Math.random() * 5;
         this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2);
         this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2);
-        this.vx = Math.random() * 2 - 1;
-        this.vy = Math.random() * 2 - 1;
+        this.vx = Math.random() * 1 - 0.5;
+        this.vy = Math.random() * 1 - 0.5;
     }
     draw(context) {
         context.beginPath();
@@ -58,7 +58,7 @@ class Particle {
         const distance = Math.hypot(dx, dy);
 
         if (mouseClick && distance < mouse.radius + this.radius) {
-            const force = 0.5;
+            const force = 0.1;
             const directionX = dx / distance;
             const directionY = dy / distance;
 
